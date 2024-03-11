@@ -2,7 +2,7 @@ export const UploadImage = (imageSrc, navigate) => {
     const data = new FormData()
     data.append("file", imageSrc)
     console.log(data)
-    fetch("upload", {
+    fetch("/upload", {
         method: "put",
         body: data
     })
@@ -12,8 +12,9 @@ export const UploadImage = (imageSrc, navigate) => {
             console.log("Please add a photograph")
         }
         else {
-            navigate("/form", {state : {data}})
             console.log(data)
+            navigate("/form", {state : {data}})
+            
         }
     })
     .catch(err => {

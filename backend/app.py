@@ -9,20 +9,23 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.preprocessing.image import img_to_array
 from models.skin_tone.skin_tone_knn import identify_skin_tone
-from flask import Flask, request
+from flask import Flask, render_template, request
 from flask_restful import Api, Resource, reqparse, abort
 import werkzeug
 from models.recommender.rec import recs_essentials, makeup_recommendation
 import base64
 from io import BytesIO
 from PIL import Image
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 
 class_names1 = ['Dry_skin', 'Normal_skin', 'Oil_skin']
 class_names2 = ['Low', 'Moderate', 'Severe']
-skin_tone_dataset = 'models/skin_tone/skin_tone_dataset.csv'
+skin_tone_dataset = './models/skin_tone/skin_tone_dataset.csv'
 
 
 def get_model():
@@ -139,22 +142,22 @@ api.add_resource(SkinMetrics, "/upload")
 api.add_resource(Recommendation, "/recommend")
 
 
-# @app.route("/", methods=['GET', 'POST'])
-# def home():
-#     return render_template('home.html')
+@app.route("/", methods=['GET', 'POST'])
+def home():
+    return render_template('home.html')
 
-# @app.route("/predict", methods = ['GET','POST'])
-# def predict():
-#     if request.method == 'POST':
-#         file = request.files['file']
-#         filename = file.filename
-#         file_path = os.path.join('./static',filename)                       #slashes should be handeled properly
-#         file.save(file_path)
-#         skin_type = prediction_skin(file_path)
-#         acne_type = prediction_acne(file_path)
-#         print(skin_type)
-#         print(acne_type)
-#         return skin_type, acne_type
+@app.route("/predict", methods = ['GET','POST'])
+def predict():
+    if request.method == 'POST':
+        file = request.files['file']
+        filename = file.filename
+        file_path = os.path.join('./static',filename)                       #slashes should be handeled properly
+        file.save(file_path)
+        skin_type = prediction_skin(file_path)
+        acne_type = prediction_acne(file_path)
+        print(skin_type)
+        print(acne_type)
+        return skin_type, acne_type
 
 if __name__ == "__main__":
     app.run(debug=False)

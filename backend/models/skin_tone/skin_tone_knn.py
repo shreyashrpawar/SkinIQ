@@ -7,6 +7,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from models.skin_tone.skin_detection import skin_detection
 
 def identify_skin_tone(image_path, dataset):
+    print(image_path)
+    print(dataset)
     mean_color_values = skin_detection(image_path)
     df = pd.read_csv(dataset)
     X = df.iloc[:, [1, 2, 3]].values

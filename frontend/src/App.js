@@ -13,11 +13,13 @@ import Form from "./views/Form";
 
 // MUI
 import CssBaseline from '@mui/material/CssBaseline';
+import ResponsiveAppBar from "./views/Components/ResponsiveAppBar";
 
 function App() {
   return (
     <>
       <CssBaseline />
+      <ResponsiveAppBar/>
       <Router>
       
         <Switch>
