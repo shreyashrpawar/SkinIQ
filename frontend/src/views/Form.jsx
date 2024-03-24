@@ -214,6 +214,8 @@ const Form = () => {
                     </Grid>
                 </FormControl>
             </Container>
+            <div class="four-pointed-star styledstar"></div>
+            <div class="four-pointed-star styledstar2"></div>
         </>
     )
 }

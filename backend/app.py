@@ -2,26 +2,31 @@ import os
 from typing import List
 import numpy as np
 import pandas as pd
+from flask import Flask, request, jsonify,render_template
 from PIL import Image
+from flask_pymongo import PyMongo
+from flask_bcrypt import Bcrypt
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.preprocessing.image import load_img
 from tensorflow.keras.preprocessing.image import img_to_array
 from models.skin_tone.skin_tone_knn import identify_skin_tone
-from flask import Flask, render_template, request
 from flask_restful import Api, Resource, reqparse, abort
 import werkzeug
 from models.recommender.rec import recs_essentials, makeup_recommendation
 import base64
 from io import BytesIO
 from PIL import Image
-from flask_cors import CORS
-
+from flask_cors import CORS,cross_origin
 
 app = Flask(__name__)
-CORS(app)
+app.config['MONGO_URI'] = 'mongodb://localhost:27017/users'
+mongo = PyMongo(app)
+bcrypt = Bcrypt()
+CORS(app, supports_credentials=True)
 api = Api(app)
+
 
 class_names1 = ['Dry_skin', 'Normal_skin', 'Oil_skin']
 class_names2 = ['Low', 'Moderate', 'Severe']
@@ -145,6 +150,36 @@ api.add_resource(Recommendation, "/recommend")
 @app.route("/", methods=['GET', 'POST'])
 def home():
     return render_template('home.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    if request.method == 'POST':
+        data = request.json
+        email = data.get('email')
+        password = data.get('password')
+        user = mongo.db.users.find_one({'email': email})
+        print(user)
+        if user and bcrypt.check_password_hash(user['password'], password):
+            return jsonify({'token': 'your_token_here','username':user.get('username')})
+        else:
+            return jsonify({'error': 'Invalid credentials'}), 401
+
+@app.route('/register', methods=['POST'])
+def register():
+        if request.method == 'POST':
+            print(request.json)
+            data = request.json
+            print(data)
+            username = data.get('username')
+            email = data.get('email')
+            password = data.get('password')
+            hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+            if mongo.db.users.find_one({'email': email}):
+                return jsonify({'error': 'Email already exists'}), 400
+            else:
+                mongo.db.users.insert_one({'username':username,'email': email, 'password': hashed_password})
+                return jsonify({'message': 'User registered successfully'}), 200
+
 
 @app.route("/predict", methods = ['GET','POST'])
 def predict():

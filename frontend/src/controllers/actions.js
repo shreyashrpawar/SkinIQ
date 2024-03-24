@@ -2,7 +2,7 @@ export const UploadImage = (imageSrc, navigate) => {
     const data = new FormData()
     data.append("file", imageSrc)
     console.log(data)
-    fetch("/upload", {
+    fetch("http://localhost:5000/upload", {
         method: "put",
         body: data
     })
@@ -22,9 +22,10 @@ export const UploadImage = (imageSrc, navigate) => {
     })
 }
 
+
 export const putForm = (features, currType, currTone, navigate) => {
     console.log(features, currType, currTone, navigate)
-    fetch("/recommend", {
+    fetch("http://localhost:5000/recommend", {
         method: "put",
         headers: {
             "Content-Type": "application/json",
