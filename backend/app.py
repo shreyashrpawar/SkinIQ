@@ -157,7 +157,9 @@ def login():
         data = request.json
         email = data.get('email')
         password = data.get('password')
-        user = mongo.db.users.find_one({'email': email})
+        print(email)
+        print(password)
+        user = mongo.db.users.find_one({'username': email})
         print(user)
         if user and bcrypt.check_password_hash(user['password'], password):
             return jsonify({'token': 'your_token_here','username':user.get('username')})

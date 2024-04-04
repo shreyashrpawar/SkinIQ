@@ -5,67 +5,84 @@ import flower from './images/flower.png'
 import face from './images/face.jpeg'
 import flowerbranch from './images/flowerbranch.png'
 export default function Home(){
-  return(
-    <div className=''>
-      <div className="flex flex-col items-center p-12">
-      <span className="thenew text-9xl">SkinIQ</span>
-      <span className="SkinCare SkinCarefont text-6xl">Skin Care</span>
-      <div class="four-pointed-star"></div>
-      <div class="four-pointed-star align"></div>
-      <div class="four-pointed-star alignleft"></div>
-      <span className="thenew text-3xl mt-5">Essentials</span><div className='relative containermain'>
-      <div><img className='rounded-2xl m-4' src={myImage} alt="Description of the image" width="814px"/></div>
-      </div>
-      <div className='homemyown'><img className='imagewidth' src={myImage2} alt="Description of the image" /></div>
+  return(<>
+<div class="hero">
+  <div class="hero-img">
+    <img src="https://i.postimg.cc/kMNz5grj/flower.png" alt="Pixel Skincare"/>
+  </div>
+  <div class="hero-text">
+    <h1>Your Skin<br></br> Would Loved It!</h1>
+    <a href="#featured" class="btn">Explore</a>
+  </div>
+</div>
 
-      <div className='homemyown1'><img className='imagewidth' src={myImage3} alt="Description of the image" /></div>
-      </div>
-      <div className='homeownbutton'><span className='extrastyles pt-4 font-semibold'> <a href='/input'>Test Now</a>  </span></div>
-      <div className='heycontainer flex flex-col text-center justify-center mb-12'>
-        <span className='text-6xl thenew m-4'>Hey. Hi. Hello</span>
-        <span className='text-xl m-2'>WE’RE YOUR SKIN PROTECTOR</span>
-        <span className='text-6xl m-4'>TREATE YOUR SKIN</span>
-      </div>
-      <div> <img className='imagewidth sunflower1' src={flower} alt="It is a sunflower" /> </div>
-      <div> <img className='imagewidth sunflower2' src={flower} alt="It is a sunflower" /> </div>
-      <div> <img className='imagewidth sunflower3' src={flower} alt="It is a sunflower" /> </div>
-
-      <div id="sectionabout" className='flex flex-row mt-12 justify-center items-center h-screen heights'>
-        <div className='w-2/4 m-10'>
-          <div className='text-center SkinCare text-6xl'>About</div>
-          <div className='thenew text-xl font-semibold'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam molestias dicta assumenda dolor ex? Reiciendis quaerat eius, molestiae vitae autem nisi accusamus doloribus provident nobis placeat nam nesciunt ut aspernatur esse adipisci eum maiores ratione, inventore repellendus veritatis voluptatum similique ab fugiat libero. Possimus, velit ut. Quasi rem possimus porro, magnam odio praesentium tempora debitis, quia laudantium hic quod impedit nulla mollitia explicabo repudiandae assumenda cum! Amet magnam quas eum quis ratione itaque officia magni totam. Laudantium fugiat dolores quia.</div>
-        </div>
-        <div className='w-2/4 p-5'><img className='rounded-lg' src={face} alt="Description of the image" /></div>
-      </div>
-
-      <div id="sectioncontact" className='flex flex-row justify-center items-center h-screen heights'>
-        <div className='w-4/5 m-10'>
-        <section class="bg-white dark:bg-gray-900">
-  <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Contact Us</h2>
-      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Send us if you have any query</p>
-      <form action="#" class="space-y-8">
-          <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-              <input type="email" id="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" placeholder="name@flowbite.com" required/>
-          </div>
-          <div>
-              <label for="subject" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Subject</label>
-              <input type="text" id="subject" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500" placeholder="Let us know how we can help you" required/>
-          </div>
-          <div class="sm:col-span-2">
-              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
-              <textarea id="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500" placeholder="Leave a comment..."></textarea>
-          </div>
-          <button type="submit" class="border-8	py-3 px-5 text-sm font-medium text-center text-black rounded-lg bg-black-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">Send message</button>
-      </form>
+<section id="featured">
+  <div class="title title-left">
+    <span class="line"></span><h3>New Friend!</h3>
+  </div>
+  <div class="wrapper">
+    <div class="image">
+      <img src="https://i.postimg.cc/DyM1SgNb/flower-copy.png" alt="Pixel Facial Cream"/>
+    </div>
+    <div class="text">
+      <h2>SkinIQ Facial Cream</h2>
+      <p>A lightweight formula that packs a punch with avocado protein extract to strengthen skin's own moisture barrier, sealing in hydration to protect, nourish and soften skin.</p>
+      <a href="#" class="btn">Details</a>
+    </div>
   </div>
 </section>
 
-        </div>
-        <div className='arrange p-5 rotate-45'><img className='rounded-lg' src={flowerbranch} alt="Description of the image" /></div>
-      </div>
+<section id="collections">
+  <div class="title title-right">
+    <span class="line line-right"></span><h3>Collections</h3>
+  </div>
+  <div class="wrapper">
+    <a class="box box1">
+      <h4>Moisturizers</h4>
+      <div class="box-overlay"></div>
+    </a>
+    <a class="box box2">
+      <h4>Eye & Lip Care</h4>
+      <div class="box-overlay"></div>
+    </a>
+    <a class="box box3">
+      <h4>Cleansers & Toners</h4>
+      <div class="box-overlay"></div>
+    </a>
+  </div>
+</section>
 
-      </div>
+<section id="about">
+  <div class="title title-left">
+    <span class="line"></span><h3>SkinIQ Skincare</h3>
+  </div>
+  <div class="wrapper">
+    <div class="text">
+      <p>Since 2016, SkinIQ Skin Care has been at the forefront of the move towards organic and natural skincare product recommendation.</p>
+      <p>Specialising in emerging niche natural skin care brands, SkinIQ Skin Care is a safe zone for you and your skin where we have taken special care to hand pick and offer you some of the purest and safest brands from global organic specialists.</p>
+      <p>From cutting edge science to luxurious natural indulgence, we have selected the best products and treatments for healing and improving your well-being.</p>
+    </div>
+
+  </div>
+</section>
+<div class="max-w-md mx-auto mt-10 p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-6">Contact Us</h2>
+        <form action="#" method="POST">
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Your Name" required/>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-semibold mb-2">Email</label>
+                <input type="email" id="email" name="email" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Your Email" required/>
+            </div>
+            <div class="mb-6">
+                <label for="message" class="block text-gray-700 font-semibold mb-2">Message</label>
+                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500" placeholder="Your Message" required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300">Send</button>
+        </form>
+    </div>
+</>
   )
 }
