@@ -176,8 +176,8 @@ def register():
             email = data.get('email')
             password = data.get('password')
             hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-            if mongo.db.users.find_one({'email': email}):
-                return jsonify({'error': 'Email already exists'}), 400
+            if mongo.db.users.find_one({'username': username}):
+                return jsonify({'error': 'username already exists'}), 400
             else:
                 mongo.db.users.insert_one({'username':username,'email': email, 'password': hashed_password})
                 return jsonify({'message': 'User registered successfully'}), 200

@@ -119,7 +119,7 @@ const WebcamCapture = ({ setImageSrc, setOnPlay, onPlay }) => {
 
     return (
         <>
-            <Grid item>
+            <Grid item className="z-40">
                 <Typography variant="h5" component="div" textAlign="center">
                     {initialising ? "Initialising..." : faceOK}
                 </Typography>

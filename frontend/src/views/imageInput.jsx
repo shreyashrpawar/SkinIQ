@@ -11,7 +11,6 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import Button from '@mui/material/Button';
 
 function ImageInput() {
-            
     const [landingPage, setLandingPage] = useState(true)
     const [imageSrc, setImageSrc] = useState(null)
     const navigate = useNavigate();

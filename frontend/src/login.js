@@ -39,7 +39,7 @@ function Login() {
       .then(data => {
           if (data.error) {
             setError(data.error)
-              console.log("Error")
+              console.log(data.error)
           }
           else {
             localStorage.setItem('token', data.token);
@@ -65,7 +65,7 @@ function Login() {
         // </div> */}
      
         <div class="flex justify-center items-center h-screen"> <h1>Login</h1>
-             {error && <div style={{ color: 'red' }}></div>} 
+             
     {/* <div class="bg-white p-8 rounded shadow-md w-96">
         <h1 class="text-2xl font-semibold mb-4 text-center">Login</h1>
         {error && <div style={{ color: 'red' }}>{error}</div>}  */}
@@ -97,6 +97,7 @@ function Login() {
       <span></span>
       <span></span>
       <button type='submit' className='border m-2'>Submit</button>
+      {!error=='' && <p className='text-red-500'>{error}</p>}
     </a><br></br><br></br>
     <span className='m-2 mt-5'>Don't have an account.. <a className='text-blue-500' href='/register'>Register</a></span></div>
     
