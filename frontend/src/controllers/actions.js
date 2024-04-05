@@ -1,7 +1,7 @@
 export const UploadImage = (imageSrc, navigate) => {
     const data = new FormData()
     data.append("file", imageSrc)
-    console.log(data)
+    console.log("fileaskldfjas",imageSrc)
     fetch("http://localhost:5000/upload", {
         method: "put",
         body: data

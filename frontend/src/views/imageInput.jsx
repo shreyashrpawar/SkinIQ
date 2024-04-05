@@ -15,10 +15,23 @@ function ImageInput() {
     const [imageSrc, setImageSrc] = useState(null)
     const navigate = useNavigate();
     if(imageSrc !== null) {
-        console.log("we got an image")
+        console.log("we got an image",imageSrc)
         UploadImage(imageSrc, navigate)
     }
-
+    const handleUpload = (event) => {
+        console.log("File selected");
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const imageDataUrl = e.target.result;
+            console.log("Image data URL:", imageDataUrl);
+                setImageSrc(e.target.result);
+                 // Upload the image
+            };
+            reader.readAsDataURL(file);
+        }
+    };
     return (
         <>
             <Container maxWidth="xs" sx={{padding: 0}} alignitems="center">
@@ -32,6 +45,24 @@ function ImageInput() {
                                 fullWidth>
                                 Take a photo
                             </Button>
+                            <br />
+                            OR
+                            <label htmlFor="upload-photo">
+                            <Button
+                                component="span"
+                                variant="contained"
+                                fullWidth>
+                                Upload a photo
+                            </Button>
+                        </label>
+                        <input
+                            id="upload-photo"
+                            type="file"
+                            name="file"
+                            accept="image/jpeg"
+                            style={{ display: 'none' }}
+                            onChange={handleUpload}
+                        />
                         </Grid>:
                         <WebcamCapture setImageSrc={setImageSrc}/>
                     }
