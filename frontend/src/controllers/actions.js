@@ -1,9 +1,9 @@
 export const UploadImage = (imageSrc, navigate) => {
     const data = new FormData()
+    console.log("printint",imageSrc)
     data.append("file", imageSrc)
-    console.log("fileaskldfjas",imageSrc)
-    fetch("http://localhost:5000/upload", {
-        method: "put",
+    fetch("http://localhost:5000/predict", {
+        method: "POST",
         body: data
     })
     .then(res => res.json())
@@ -15,6 +15,28 @@ export const UploadImage = (imageSrc, navigate) => {
             console.log(data)
             navigate("/form", {state : {data}})
             
+        }
+    })
+    .catch(err => {
+        console.log(err.message)
+    })
+}
+export const CaptureImage = (imageSrc, navigate) => {
+    const data = new FormData()
+    data.append("file", imageSrc)
+    console.log(data)
+    fetch("http://localhost:5000/upload", {
+        method: "put",
+        body: data
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.error) {
+            console.log("Please add a photograph")
+        }
+        else {
+            navigate("/form", {state : {data}})
+            console.log(data)
         }
     })
     .catch(err => {

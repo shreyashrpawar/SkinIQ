@@ -129,7 +129,6 @@ class SkinMetrics(Resource):
         image_data = file[starter+1:]
         image_data = bytes(image_data, encoding="ascii")
         im = Image.open(BytesIO(base64.b64decode(image_data)))
-
         filename = 'image.png'
         file_path = os.path.join('./static', filename)
         im.save(file_path)
@@ -187,14 +186,16 @@ def register():
 def predict():
     if request.method == 'POST':
         file = request.files['file']
+        print(file)
         filename = file.filename
         file_path = os.path.join('./static',filename)                       #slashes should be handeled properly
         file.save(file_path)
+        tone = identify_skin_tone(file_path, dataset=skin_tone_dataset)
         skin_type = prediction_skin(file_path)
         acne_type = prediction_acne(file_path)
         print(skin_type)
         print(acne_type)
-        return skin_type, acne_type
+        return {'type': skin_type, 'tone': str(tone), 'acne': acne_type}, 200
 
 if __name__ == "__main__":
     app.run(debug=False)

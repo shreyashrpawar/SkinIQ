@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { UploadImage } from '../controllers/actions'
+import { UploadImage, CaptureImage } from '../controllers/actions'
 import {useNavigate} from 'react-router-dom';
 
 import WebcamCapture from './Components/webCam'
@@ -16,21 +16,13 @@ function ImageInput() {
     const navigate = useNavigate();
     if(imageSrc !== null) {
         console.log("we got an image",imageSrc)
-        UploadImage(imageSrc, navigate)
+        CaptureImage(imageSrc, navigate)
     }
     const handleUpload = (event) => {
         console.log("File selected");
         const file = event.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const imageDataUrl = e.target.result;
-            console.log("Image data URL:", imageDataUrl);
-                setImageSrc(e.target.result);
-                 // Upload the image
-            };
-            reader.readAsDataURL(file);
-        }
+        console.log(file)
+        UploadImage(file,navigate)
     };
     return (
         <>
@@ -59,7 +51,6 @@ function ImageInput() {
                             id="upload-photo"
                             type="file"
                             name="file"
-                            accept="image/jpeg"
                             style={{ display: 'none' }}
                             onChange={handleUpload}
                         />
